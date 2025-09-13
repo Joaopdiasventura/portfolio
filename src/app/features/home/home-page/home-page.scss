@@ -1,0 +1,12 @@
+@use '../../../../styles/variables.scss' as *;
+
+:host {
+  min-height: 100vh;
+  background-color: $dark-background;
+  color: $dark-foreground;
+}
+
+:host(.light) {
+  background-color: $background;
+  color: $foreground;
+}

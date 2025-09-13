@@ -1,0 +1,51 @@
+<section id="projects" class="projects">
+  <div class="container">
+    <div class="intro">
+      <h2>Featured Projects</h2>
+      <p>A selection of projects that showcase my skills and experience</p>
+    </div>
+
+    <div class="grid">
+      @for (project of projects; track $index) {
+        <div class="card">
+          <div class="media">
+            <img [src]="project.image" (error)="onImgError($event)" [alt]="project.title" />
+          </div>
+
+          <div class="card-header">
+            <h3>{{ project.title }}</h3>
+          </div>
+
+          <div class="card-content">
+            <p class="description">{{ project.description }}</p>
+            <div class="badges">
+              @for (tech of project.technologies; track $index) {
+                <span class="badge">{{ tech }}</span>
+              }
+            </div>
+          </div>
+
+          <div class="card-footer">
+            @if (project.githubUrl) {
+              <a
+                class="btn btn-outline"
+                [href]="project.githubUrl"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span class="icon github"></span>
+                Code
+              </a>
+            }
+            @if (project.liveUrl) {
+              <a class="btn btn-primary" [href]="project.liveUrl" target="_blank" rel="noreferrer">
+                <span class="icon external"></span>
+                Live Demo
+              </a>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,179 @@
+@use 'sass:color';
+@use '../../../../styles/variables.scss' as *;
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background-color: color.change($dark-background, $alpha: 0.8);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid $dark-border;
+}
+
+.container {
+  height: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.brand {
+  font-weight: $dark-font-weight-medium;
+  color: $dark-foreground;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  img {
+    height: 80%;
+    aspect-ratio: 1 / 1;
+  }
+
+  h2 {
+    font-family: 'Kode Mono', monospace;
+  }
+}
+
+.desktop-nav {
+  display: none;
+  gap: 32px;
+}
+
+.nav-link {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  color: $dark-muted-foreground;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $dark-foreground;
+  }
+
+  &.active {
+    color: $dark-primary;
+  }
+}
+
+.mobile-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: $radius-md;
+  border: 0;
+  background: transparent;
+  color: $dark-foreground;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+
+  &:hover {
+    background-color: $dark-accent;
+    color: $dark-accent-foreground;
+  }
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.mobile-nav {
+  display: block;
+  padding-block: 16px;
+}
+
+.mobile-link {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 16px;
+  border-radius: $radius-lg;
+  border: 0;
+  background: transparent;
+  color: $dark-muted-foreground;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+
+  &:hover {
+    background-color: $dark-accent;
+    color: $dark-accent-foreground;
+  }
+
+  &.active {
+    background-color: $dark-accent;
+    color: $dark-accent-foreground;
+  }
+}
+
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex;
+  }
+  .mobile-toggle {
+    display: none;
+  }
+  .mobile-nav {
+    display: none;
+  }
+}
+
+:host(.light) .nav {
+  background-color: color.change($background, $alpha: 0.8);
+  border-color: $border;
+}
+
+:host(.light) .brand {
+  color: $foreground;
+}
+
+:host(.light) .nav-link {
+  color: $muted-foreground;
+
+  &:hover {
+    color: $foreground;
+  }
+
+  &.active {
+    color: $primary;
+  }
+}
+
+:host(.light) .mobile-toggle {
+  color: $foreground;
+
+  &:hover {
+    background-color: $accent;
+    color: $accent-foreground;
+  }
+}
+
+:host(.light) .mobile-link {
+  color: $muted-foreground;
+
+  &:hover {
+    background-color: $accent;
+    color: $accent-foreground;
+  }
+
+  &.active {
+    background-color: $accent;
+    color: $accent-foreground;
+  }
+}

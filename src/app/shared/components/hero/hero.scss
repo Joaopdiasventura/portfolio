@@ -1,0 +1,203 @@
+@use '../../../../styles/variables.scss' as *;
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 24px;
+  background-color: $dark-background;
+  color: $dark-foreground;
+}
+
+.wrapper {
+  max-width: 64rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.avatar-wrap {
+  margin-bottom: 32px;
+}
+
+.avatar {
+  width: 128px;
+  height: 128px;
+  border-radius: 9999px;
+  object-fit: cover;
+  margin-inline: auto;
+  margin-bottom: 24px;
+  border: 2px solid $dark-primary;
+}
+
+.title {
+  margin-bottom: 16px;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  line-height: 1.2;
+  font-family: 'Kode Mono', monospace;
+}
+
+.highlight {
+  color: $dark-primary;
+}
+
+.subtitle {
+  margin-bottom: 24px;
+  color: $dark-muted-foreground;
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 600;
+  font-family: 'Kode Mono', monospace;
+}
+
+.description {
+  margin-bottom: 32px;
+  max-width: 48rem;
+  margin-inline: auto;
+  color: $dark-muted-foreground;
+  line-height: 1.7;
+}
+
+.cta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+
+@media (min-width: 640px) {
+  .hero {
+    padding-inline: 32px;
+  }
+  .cta-row {
+    flex-direction: row;
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: $radius-lg;
+  border: 1px solid transparent;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.ml-2 {
+  margin-left: 8px;
+}
+
+.btn-primary {
+  background-color: $dark-primary;
+  color: $dark-primary-foreground;
+
+  &:hover {
+    filter: brightness(0.95);
+  }
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: $dark-border;
+  color: $dark-foreground;
+
+  &:hover {
+    background-color: $dark-accent;
+    color: $dark-accent-foreground;
+  }
+}
+
+.btn-icon {
+  width: 44px;
+  padding: 0;
+}
+
+.socials {
+  display: flex;
+  gap: 16px;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  background-color: currentColor;
+  mask-size: cover;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: cover;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+
+  &.github {
+    mask-image: url('/assets/icons/github.svg');
+    -webkit-mask-image: url('/assets/icons/github.svg');
+  }
+
+  &.linkedin {
+    mask-image: url('/assets/icons/linkedin.svg');
+    -webkit-mask-image: url('/assets/icons/linkedin.svg');
+  }
+
+  &.mail {
+    mask-image: url('/assets/icons/mail.svg');
+    -webkit-mask-image: url('/assets/icons/mail.svg');
+  }
+
+  &.arrow {
+    mask-image: url('/assets/icons/arrow-down.svg');
+    -webkit-mask-image: url('/assets/icons/arrow-down.svg');
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+:host(.light) .hero {
+  background-color: $background;
+  color: $foreground;
+}
+
+:host(.light) .subtitle,
+:host(.light) .description {
+  color: $muted-foreground;
+}
+
+:host(.light) .btn-outline {
+  border-color: $border;
+  color: $foreground;
+
+  &:hover {
+    background-color: $accent;
+    color: $accent-foreground;
+  }
+}
+
+:host(.light) .btn-primary {
+  background-color: $primary;
+  color: $primary-foreground;
+}
+
+:host(.light) .avatar {
+  border-color: $primary;
+}

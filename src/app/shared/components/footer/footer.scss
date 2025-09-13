@@ -1,0 +1,41 @@
+@use '../../../../styles/variables.scss' as *;
+
+.footer {
+  padding-block: 32px;
+  padding-inline: 24px;
+  border-top: 1px solid $dark-border;
+  background-color: $dark-background;
+  color: $dark-foreground;
+}
+
+.container {
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+  }
+}
+
+.text {
+  color: $dark-muted-foreground;
+  font-size: 14px;
+}
+
+:host(.light) .footer {
+  background-color: $background;
+  color: $foreground;
+  border-color: $border;
+}
+
+:host(.light) .text {
+  color: $muted-foreground;
+}

@@ -1,0 +1,43 @@
+<section id="about" class="about">
+  <div class="container">
+    <div class="intro">
+      <h2>About Me</h2>
+      <p>Passionate about creating digital experiences that make a difference</p>
+    </div>
+
+    <div class="content">
+      <div class="journey">
+        <h3>My Journey</h3>
+        <div class="text">
+          <p>
+            I started my career in 2022 with Visual Basic, where I created my first games. After
+            developing this interest in programming, I began a technical high school program,
+            spending 3 years studying programming and software development.
+          </p>
+          <p>
+            In my third semester of the course, I got an internship at one of my professor’s
+            companies, where I stood out and was hired as a full-time employee after just 2 months.
+            The following year, I was promoted to mid-level developer.
+          </p>
+          <p>
+            In my final year of high school, I completed my graduation project in the first
+            semester, and it was used by more than 500 students to carry out the student council
+            elections.
+          </p>
+        </div>
+      </div>
+
+      <div class="highlights">
+        @for (item of highlights; track $index) {
+          <div class="card">
+            <div class="card-content">
+              <div class="icon" [ngClass]="item.icon"></div>
+              <h4>{{ item.title }}</h4>
+              <p>{{ item.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
