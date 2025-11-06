@@ -1,3 +1,4 @@
+<a class="skip-link" href="#main">Skip to content</a>
 <nav class="nav">
   <div class="container">
     <div class="bar">
@@ -11,12 +12,28 @@
             (click)="scrollToSection(item.id)"
             class="nav-link"
             [class.active]="activeSection() === item.id"
+            [attr.aria-current]="activeSection() === item.id ? 'page' : null"
+            role="link"
+            [attr.data-id]="item.id"
           >
             {{ item.label }}
           </button>
         }
+        <button
+          class="nav-link"
+          data-static="true"
+          (click)="toggleTheme()"
+          aria-label="Toggle theme"
+        >
+          Theme
+        </button>
+        <div class="nav-underline" id="nav-underline" aria-hidden="true"></div>
       </div>
-      <button class="mobile-toggle" (click)="toggleMenu()">
+      <button
+        class="mobile-toggle"
+        (click)="toggleMenu()"
+        [attr.aria-label]="isMenuOpen() ? 'Close menu' : 'Open menu'"
+      >
         @if (!isMenuOpen()) {
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -42,18 +59,32 @@
         }
       </button>
     </div>
-    @if (isMenuOpen()) {
-      <div class="mobile-nav">
-        @for (item of navItems; track $index) {
-          <button
-            (click)="scrollToSection(item.id)"
-            class="mobile-link"
-            [class.active]="activeSection() === item.id"
-          >
-            {{ item.label }}
-          </button>
-        }
-      </div>
-    }
+    <div class="mobile-nav" [class.open]="isMenuOpen()" [attr.aria-hidden]="!isMenuOpen()">
+      @for (item of navItems; track $index) {
+        <button
+          (click)="scrollToSection(item.id)"
+          class="mobile-link"
+          [class.active]="activeSection() === item.id"
+          [attr.aria-current]="activeSection() === item.id ? 'page' : null"
+          role="link"
+        >
+          {{ item.label }}
+        </button>
+      }
+      <button
+        class="mobile-link"
+        data-static="true"
+        (click)="toggleTheme()"
+        aria-label="Toggle theme"
+      >
+        Theme
+      </button>
+    </div>
+    <div
+      class="backdrop"
+      [class.open]="isMenuOpen()"
+      (click)="toggleMenu()"
+      aria-hidden="true"
+    ></div>
   </div>
 </nav>

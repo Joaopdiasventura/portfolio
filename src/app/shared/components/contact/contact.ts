@@ -1,9 +1,10 @@
 import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
+import { RevealOnScrollDirective } from '../../directives/reveal-on-scroll.directive';
 
 @Component({
   selector: 'app-contact',
-  imports: [NgClass],
+  imports: [NgClass, RevealOnScrollDirective],
   templateUrl: './contact.html',
   styleUrl: './contact.scss',
 })

@@ -6,7 +6,7 @@
   color: $dark-foreground;
 }
 
-:host(.light) {
+:host-context(.light) {
   background-color: $background;
   color: $foreground;
 }

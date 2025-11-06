@@ -1,15 +1,15 @@
 <section id="contact" class="contact">
   <div class="container">
     <div class="intro">
-      <h2>Get In Touch</h2>
-      <p>
+      <h2 appReveal="up">Get In Touch</h2>
+      <p appReveal="up" [revealDelay]="100">
         I'm always interested in new opportunities and exciting projects. Let's discuss how we can
         work together!
       </p>
     </div>
 
     <div class="grid">
-      <div class="card">
+      <div class="card" appReveal="right">
         <div class="card-header">
           <h3>Send me a message</h3>
           <p class="description">
@@ -55,7 +55,7 @@
           <h3>Contact Information</h3>
           <div class="info-list">
             @for (item of contactInfo; track $index) {
-              <div class="info-item">
+              <div class="info-item" appReveal="up" [revealDelay]="$index * 100">
                 <div class="icon-wrap">
                   <span class="icon" [ngClass]="item.icon"></span>
                 </div>
@@ -72,7 +72,7 @@
           <h3>Follow Me</h3>
           <div class="info-list">
             @for (link of socialLinks; track $index) {
-              <div class="info-item">
+              <div class="info-item" appReveal="up" [revealDelay]="$index * 100">
                 <div class="icon-wrap">
                   <span class="icon" [ngClass]="link.icon"></span>
                 </div>
@@ -87,11 +87,11 @@
           </div>
         </div>
 
-        <div class="note">
+        <div class="note" appReveal="up" [revealDelay]="200">
           <h4>Let's collaborate!</h4>
           <p>
-            I'm currently available for freelance projects. Whether you
-            have a specific project in mind or just want to connect, I'd love to hear from you.
+            I'm currently available for freelance projects. Whether you have a specific project in
+            mind or just want to connect, I'd love to hear from you.
           </p>
         </div>
       </div>

@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../../../styles/variables.scss' as *;
 
 .projects {
@@ -51,14 +52,29 @@
   color: $dark-card-foreground;
   overflow: hidden;
   display: flex;
-  flex-direction: column; // já estava, mantém
+  flex-direction: column;
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: $brand-gradient;
+    opacity: 0.7;
+  }
 
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+    &::before {
+      opacity: 1;
+    }
   }
 }
 
@@ -94,7 +110,7 @@
     height: 100%;
     object-fit: cover;
     transform: scale(1);
-    transition: transform 0.3s ease;
+    transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   &:hover img {
@@ -102,14 +118,43 @@
   }
 }
 
+@media (max-width: 767px) {
+  .reveal.from-up {
+    transform: translateY(28px) scale(0.98);
+  }
+  .reveal.visible {
+    transform: translateY(0) scale(1);
+  }
+  .reveal .media img {
+    transform: scale(1.05);
+  }
+  .reveal.visible .media img {
+    transform: scale(1);
+  }
+}
+
 .card-header {
   padding: 16px 20px;
 
   h3 {
+    background: $brand-gradient;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-family: 'Kode Mono', monospace;
     font-size: 18px;
     font-weight: 600;
   }
+}
+
+.badges .badge {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 12px;
+  border: 1px solid $dark-border;
+  border-radius: 9999px;
+  color: $dark-foreground;
+  background-color: color.change($dark-accent, $alpha: 0.5);
 }
 
 .btn {
@@ -164,39 +209,41 @@
 }
 
 .btn-primary {
-  background-color: $dark-primary;
-  color: $dark-primary-foreground;
+  background: $brand-gradient;
+  color: $brand-text;
+  border-color: transparent;
 
   &:hover {
-    filter: brightness(0.95);
+    filter: brightness(0.98);
   }
 }
 
-:host(.light) .projects {
+:host-context(.light) .projects {
   background-color: $background;
   color: $foreground;
 }
 
-:host(.light) .intro p {
+:host-context(.light) .intro p {
   color: $muted-foreground;
 }
 
-:host(.light) .card {
+:host-context(.light) .card {
   background-color: $card;
   color: $card-foreground;
   border-color: $border;
 }
 
-:host(.light) .card-content .description {
+:host-context(.light) .card-content .description {
   color: $muted-foreground;
 }
 
-:host(.light) .card-content .badges .badge {
+:host-context(.light) .card-content .badges .badge {
   border-color: $border;
   color: $foreground;
+  background-color: color.change($accent, $alpha: 0.6);
 }
 
-:host(.light) .btn-outline {
+:host-context(.light) .btn-outline {
   border-color: $border;
   color: $foreground;
 
@@ -206,7 +253,7 @@
   }
 }
 
-:host(.light) .btn-primary {
-  background-color: $primary;
-  color: $primary-foreground;
+:host-context(.light) .btn-primary {
+  background: $brand-gradient;
+  color: $brand-text;
 }

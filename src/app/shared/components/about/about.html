@@ -1,12 +1,14 @@
 <section id="about" class="about">
   <div class="container">
     <div class="intro">
-      <h2>About Me</h2>
-      <p>Passionate about creating digital experiences that make a difference</p>
+      <h2 appReveal="up">About Me</h2>
+      <p appReveal="up" [revealDelay]="100">
+        Passionate about creating digital experiences that make a difference
+      </p>
     </div>
 
     <div class="content">
-      <div class="journey">
+      <div class="journey" appReveal="left">
         <h3>My Journey</h3>
         <div class="text">
           <p>
@@ -29,7 +31,7 @@
 
       <div class="highlights">
         @for (item of highlights; track $index) {
-          <div class="card">
+          <div class="card" appReveal="up" [revealDelay]="$index * 100">
             <div class="card-content">
               <div class="icon" [ngClass]="item.icon"></div>
               <h4>{{ item.title }}</h4>

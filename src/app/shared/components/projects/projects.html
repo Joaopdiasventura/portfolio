@@ -1,15 +1,23 @@
 <section id="projects" class="projects">
   <div class="container">
     <div class="intro">
-      <h2>Featured Projects</h2>
-      <p>A selection of projects that showcase my skills and experience</p>
+      <h2 appReveal="up">Featured Projects</h2>
+      <p appReveal="up" [revealDelay]="100">
+        A selection of projects that showcase my skills and experience
+      </p>
     </div>
 
     <div class="grid">
       @for (project of projects; track $index) {
-        <div class="card">
+        <div class="card" appReveal="up" [revealDelay]="$index * 100">
           <div class="media">
-            <img [src]="project.image" (error)="onImgError($event)" [alt]="project.title" />
+            <img
+              [src]="project.image"
+              (error)="onImgError($event)"
+              [alt]="project.title"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
 
           <div class="card-header">

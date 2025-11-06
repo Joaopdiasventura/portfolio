@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RevealOnScrollDirective } from '../../directives/reveal-on-scroll.directive';
 
 interface Project {
   title: string;
@@ -11,7 +12,7 @@ interface Project {
 
 @Component({
   selector: 'app-projects',
-  imports: [],
+  imports: [RevealOnScrollDirective],
   templateUrl: './projects.html',
   styleUrl: './projects.scss',
 })
@@ -48,6 +49,6 @@ export class Projects {
 
   public onImgError(e: Event): void {
     const el = e.target as HTMLImageElement;
-    if (el.src !== this.fallback) el.src = this.fallback;
+    if (el.src != this.fallback) el.src = this.fallback;
   }
 }

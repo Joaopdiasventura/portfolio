@@ -6,6 +6,7 @@
   border-top: 1px solid $dark-border;
   background-color: $dark-background;
   color: $dark-foreground;
+  position: relative;
 }
 
 .container {
@@ -26,16 +27,30 @@
 }
 
 .text {
-  color: $dark-muted-foreground;
+  background: $brand-gradient;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-size: 14px;
 }
 
-:host(.light) .footer {
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: $brand-gradient;
+  color: $brand-text;
+}
+
+:host-context(.light) .footer {
   background-color: $background;
   color: $foreground;
   border-color: $border;
 }
 
-:host(.light) .text {
+:host-context(.light) .text {
   color: $muted-foreground;
 }

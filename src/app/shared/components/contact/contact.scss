@@ -22,6 +22,11 @@
     margin-bottom: 16px;
     font-size: clamp(24px, 4vw, 32px);
     font-weight: 700;
+    background: $brand-gradient;
+    color: $brand-text;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   p {
@@ -52,6 +57,10 @@
     margin-bottom: 24px;
 
     h3 {
+      background: $brand-gradient;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
       font-family: 'Kode Mono', monospace;
       font-size: 20px;
       font-weight: 600;
@@ -129,12 +138,12 @@
 }
 
 .btn-primary {
-  background-color: $dark-primary;
-  color: $dark-primary-foreground;
+  background: $brand-gradient;
+  color: $brand-text;
   border: none;
 
   &:hover {
-    filter: brightness(0.95);
+    filter: brightness(0.98);
   }
 }
 
@@ -207,6 +216,10 @@
     .label {
       font-family: 'Kode Mono', monospace;
       font-weight: 500;
+      background: $brand-gradient;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     a {
@@ -227,6 +240,10 @@
   background-color: $dark-card;
 
   h4 {
+    background: $brand-gradient;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-family: 'Kode Mono', monospace;
     margin-bottom: 8px;
     font-size: 16px;
@@ -239,37 +256,37 @@
   }
 }
 
-:host(.light) .contact {
+:host-context(.light) .contact {
   background-color: color.change($muted, $alpha: 0.5);
   color: $foreground;
 }
 
-:host(.light) .card {
+:host-context(.light) .card {
   background-color: $card;
   color: $card-foreground;
   border-color: $border;
 }
 
-:host(.light) .card .card-header .description,
-:host(.light) .intro p,
-:host(.light) .info-item a,
-:host(.light) .note p {
+:host-context(.light) .card .card-header .description,
+:host-context(.light) .intro p,
+:host-context(.light) .info-item a,
+:host-context(.light) .note p {
   color: $muted-foreground;
 }
 
-:host(.light) .card .form-group input,
-:host(.light) .card .form-group textarea {
+:host-context(.light) .card .form-group input,
+:host-context(.light) .card .form-group textarea {
   background-color: $input-background;
   border-color: $border;
   color: $foreground;
 }
 
-:host(.light) .btn-primary {
-  background-color: $primary;
-  color: $primary-foreground;
+:host-context(.light) .btn-primary {
+  background: $brand-gradient;
+  color: $brand-text;
 }
 
-:host(.light) .info-item .icon-wrap {
+:host-context(.light) .info-item .icon-wrap {
   background-color: color.change($primary, $alpha: 0.1);
 
   .icon {
@@ -277,7 +294,7 @@
   }
 }
 
-:host(.light) .note {
+:host-context(.light) .note {
   background-color: $card;
   border-color: $border;
 }

@@ -21,6 +21,7 @@
     margin-bottom: 16px;
     font-size: clamp(24px, 4vw, 32px);
     font-weight: 700;
+    color: $dark-foreground;
   }
 
   p {
@@ -46,6 +47,10 @@
   margin-bottom: 24px;
   font-size: clamp(20px, 3vw, 24px);
   font-weight: 600;
+  background: $brand-gradient;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .journey .text {
@@ -69,8 +74,8 @@
 .card {
   border: 1px solid $dark-border;
   border-radius: $radius-lg;
-  background-color: $dark-card;
-  color: $dark-card-foreground;
+  color: $brand-text;
+  background-image: $brand-gradient;
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
@@ -82,13 +87,14 @@
 }
 
 .card-content {
+  color: $brand-text;
   padding: 24px;
 
   .icon {
     width: 32px;
     height: 32px;
     margin-bottom: 16px;
-    background-color: $dark-primary;
+    background-color: $brand-text;
     mask-size: cover;
     mask-repeat: no-repeat;
     mask-position: center;
@@ -119,32 +125,40 @@
     margin-bottom: 8px;
     font-size: 18px;
     font-weight: 600;
+    color: $brand-text;
   }
 
   p {
-    color: $dark-muted-foreground;
+    color: $brand-text;
     font-size: 15px;
     line-height: 1.6;
   }
 }
 
-:host(.light) .about {
+:host-context(.light) .about {
   background-color: $background;
   color: $foreground;
 }
 
-:host(.light) .card {
+:host-context(.light) .intro h2 {
+  background: $brand-gradient;
+  color: $brand-text;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+:host-context(.light) .card {
   background-color: $card;
   color: $card-foreground;
   border-color: $border;
 }
 
-:host(.light) .intro p,
-:host(.light) .journey .text,
-:host(.light) .card-content p {
+:host-context(.light) .intro p,
+:host-context(.light) .journey .text {
   color: $muted-foreground;
 }
 
-:host(.light) .card-content .icon {
-  background-color: $primary;
+:host-context(.light) .card-content .icon {
+  background-color: $brand-text;
 }

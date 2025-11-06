@@ -1,20 +1,31 @@
 <section id="home" class="hero">
-  <div class="wrapper">
-    <div class="avatar-wrap">
-      <img src="assets/images/profile.png" alt="João Paulo Dias" class="avatar" />
+  <div class="wrapper" appReveal="fade">
+    <div class="avatar-wrap" appReveal="down">
+      <img
+        src="assets/images/profile.png"
+        alt="João Paulo Dias"
+        class="avatar"
+        width="128"
+        height="128"
+        decoding="async"
+      />
     </div>
 
-    <h1 class="title">Hi, I'm <span class="highlight">João Paulo Dias</span></h1>
+    <h1 class="title" appReveal="up" [revealDelay]="100">
+      Hi, I'm <span class="highlight">João Paulo Dias</span>
+    </h1>
 
-    <h2 class="subtitle">Full Stack Developer & Software Engineer</h2>
+    <h2 class="subtitle" appReveal="up" [revealDelay]="200">
+      Full Stack Developer & Software Engineer
+    </h2>
 
-    <p class="description">
-      I create robust, scalable web applications using modern technologies. With 3+ years of
+    <p class="description" appReveal="up" [revealDelay]="300">
+      I create robust and scalable web applications using modern technologies. With 3+ years of
       experience in both frontend and backend development, I specialize in Angular, Node.js, and
       cloud technologies.
     </p>
 
-    <div class="cta-row">
+    <div class="cta-row" appReveal="up" [revealDelay]="400">
       <button class="btn btn-primary" (click)="scrollToAbout()">
         View My Work <span class="icon arrow"></span>
       </button>

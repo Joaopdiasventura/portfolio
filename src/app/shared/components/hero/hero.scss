@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../../../styles/variables.scss' as *;
 
 .hero {
@@ -17,7 +18,15 @@
 }
 
 .avatar-wrap {
-  margin-bottom: 32px;
+  height: auto;
+  width: auto;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 9999px;
+  background: $brand-gradient;
+  color: $brand-text;
 }
 
 .avatar {
@@ -26,20 +35,23 @@
   border-radius: 9999px;
   object-fit: cover;
   margin-inline: auto;
-  margin-bottom: 24px;
-  border: 2px solid $dark-primary;
+  border: 0;
 }
 
 .title {
-  margin-bottom: 16px;
+  margin: 16px 0;
   font-size: clamp(28px, 4vw, 40px);
   font-weight: 700;
   line-height: 1.2;
-  font-family: 'Kode Mono', monospace;
 }
 
 .highlight {
-  color: $dark-primary;
+  font-family: 'Kode Mono', monospace;
+  background: $brand-gradient;
+  color: $brand-text;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
@@ -102,11 +114,12 @@
 }
 
 .btn-primary {
-  background-color: $dark-primary;
-  color: $dark-primary-foreground;
+  background: $brand-gradient;
+  color: $brand-text;
+  border-color: transparent;
 
   &:hover {
-    filter: brightness(0.95);
+    filter: brightness(0.98);
   }
 }
 
@@ -173,17 +186,17 @@
   }
 }
 
-:host(.light) .hero {
+:host-context(.light) .hero {
   background-color: $background;
   color: $foreground;
 }
 
-:host(.light) .subtitle,
-:host(.light) .description {
+:host-context(.light) .subtitle,
+:host-context(.light) .description {
   color: $muted-foreground;
 }
 
-:host(.light) .btn-outline {
+:host-context(.light) .btn-outline {
   border-color: $border;
   color: $foreground;
 
@@ -193,11 +206,19 @@
   }
 }
 
-:host(.light) .btn-primary {
-  background-color: $primary;
-  color: $primary-foreground;
+:host-context(.light) .btn-primary {
+  background: $brand-gradient;
+  color: $brand-text;
 }
 
-:host(.light) .avatar {
+:host-context(.light) .avatar {
   border-color: $primary;
+}
+
+:host-context(.light) .highlight {
+  color: $brand-text;
+  background: $brand-gradient;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

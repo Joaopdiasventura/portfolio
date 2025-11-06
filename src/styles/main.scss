@@ -1,7 +1,128 @@
+@use 'sass:color';
+@use './variables.scss' as *;
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Nunito', sans-serif;
   font-optical-sizing: auto;
+}
+
+body,
+.nav,
+.hero,
+.about,
+.projects,
+.contact,
+.footer,
+.card,
+.btn {
+  transition:
+    background-color 300ms ease,
+    color 300ms ease,
+    border-color 300ms ease;
+}
+
+.reveal {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition:
+    opacity 600ms ease,
+    transform 600ms ease;
+}
+.reveal.from-up {
+  transform: translateY(16px);
+}
+.reveal.from-down {
+  transform: translateY(-16px);
+}
+.reveal.from-left {
+  transform: translateX(16px);
+}
+.reveal.from-right {
+  transform: translateX(-16px);
+}
+.reveal.from-fade {
+  transform: none;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.btn {
+  will-change: transform;
+}
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(0);
+}
+.card {
+  will-change: transform, box-shadow;
+}
+
+.brand-bg {
+  background: $brand-gradient;
+  color: $brand-text;
+}
+.brand-bg *,
+.btn-primary {
+  color: $brand-text;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color.change($dark-muted, $alpha: 0.8)
+    color.change($dark-background, $alpha: 0.9);
+}
+html.light * {
+  scrollbar-width: thin;
+  scrollbar-color: color.change($muted, $alpha: 0.9) $background;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: color.change($dark-background, $alpha: 0.9);
+}
+*::-webkit-scrollbar-thumb {
+  background-color: color.change($dark-muted, $alpha: 0.8);
+  border-radius: $radius-md;
+  border: 2px solid color.change($dark-background, $alpha: 0.9);
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: color.change($dark-secondary, $alpha: 0.9);
+}
+
+html.light *::-webkit-scrollbar-track {
+  background: $background;
+}
+html.light *::-webkit-scrollbar-thumb {
+  background-color: color.change($muted, $alpha: 0.9);
+  border: 2px solid $background;
+}
+html.light *::-webkit-scrollbar-thumb:hover {
+  background-color: $secondary;
+}
+
+.btn:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color.change($ring, $alpha: 0.6);
+  transition: box-shadow 150ms ease;
 }

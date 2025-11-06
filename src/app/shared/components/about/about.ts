@@ -1,9 +1,10 @@
 import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
+import { RevealOnScrollDirective } from '../../directives/reveal-on-scroll.directive';
 
 @Component({
   selector: 'app-about',
-  imports: [NgClass],
+  imports: [NgClass, RevealOnScrollDirective],
   templateUrl: './about.html',
   styleUrl: './about.scss',
 })
@@ -12,12 +13,12 @@ export class About {
     {
       icon: 'code',
       title: 'Frontend Development',
-      description: 'Expert in React, Angular, and Nextjs',
+      description: 'Expert in Angular and React',
     },
     {
       icon: 'server',
       title: 'Backend Development',
-      description: 'Proficient in Node.js with RESTful API and microsservice design',
+      description: 'Proficient in Node.js, REST APIs, and microservices',
     },
     {
       icon: 'database',
@@ -26,8 +27,8 @@ export class About {
     },
     {
       icon: 'cloud',
-      title: 'Cloud Managment',
-      description: 'Upload applications in AWS, GCP, and Vercel',
+      title: 'Cloud Management',
+      description: 'Deploy applications to AWS, GCP, and Vercel',
     },
   ];
 }

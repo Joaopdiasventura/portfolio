@@ -76,3 +76,8 @@ $radius-sm: calc(#{$radius} - 4px);
 $radius-md: calc(#{$radius} - 2px);
 $radius-lg: $radius;
 $radius-xl: calc(#{$radius} + 4px);
+
+$brand-start: #c61f2a;
+$brand-end: #ff4d57;
+$brand-text: #ffffff;
+$brand-gradient: linear-gradient(135deg, $brand-start 0%, $brand-end 100%);
