@@ -1,7 +1,7 @@
 <app-navigation />
 <main id="main" tabindex="-1">
   <app-hero />
-  @defer (on viewport) {
+  @defer (when hasScrolled()) {
     <app-about />
   } @placeholder {
     <section id="about" class="section-placeholder"></section>
@@ -17,8 +17,4 @@
     <section id="contact" class="section-placeholder"></section>
   }
 </main>
-@defer (on viewport) {
-  <app-footer />
-} @placeholder {
-  <footer class="section-placeholder"></footer>
-}
+<app-footer />
