@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../../../styles/variables.scss' as *;
 
 :host {
@@ -9,4 +10,26 @@
 :host-context(.light) {
   background-color: $background;
   color: $foreground;
+}
+
+.section-placeholder {
+  min-height: 56vh;
+  border-top: 1px solid color.change($dark-border, $alpha: 0.6);
+  border-bottom: 1px solid color.change($dark-border, $alpha: 0.6);
+  background: linear-gradient(
+    130deg,
+    color.change($dark-background, $alpha: 0.85),
+    color.change($dark-card, $alpha: 0.95),
+    color.change($dark-background, $alpha: 0.85)
+  );
+}
+
+:host-context(.light) .section-placeholder {
+  border-color: color.change($border, $alpha: 0.6);
+  background: linear-gradient(
+    130deg,
+    color.change($background, $alpha: 0.95),
+    color.change($card, $alpha: 1),
+    color.change($background, $alpha: 0.95)
+  );
 }

@@ -1,15 +1,26 @@
 <section id="home" class="hero">
   <div class="wrapper" appReveal="fade">
-    <div class="avatar-wrap" appReveal="down">
+    <picture class="avatar-wrap" appReveal="down">
+      <source
+        type="image/webp"
+        srcset="assets/images/profile-128.webp 128w, assets/images/profile-256.webp 256w"
+        sizes="128px"
+      />
+      <source
+        type="image/png"
+        srcset="assets/images/profile-128.png 128w, assets/images/profile-256.png 256w"
+        sizes="128px"
+      />
       <img
-        src="assets/images/profile.png"
+        src="assets/images/profile-128.png"
         alt="João Paulo Dias"
         class="avatar"
         width="128"
         height="128"
         decoding="async"
+        fetchpriority="high"
       />
-    </div>
+    </picture>
 
     <h1 class="title" appReveal="up" [revealDelay]="100">
       Hi, I'm <span class="highlight">João Paulo Dias</span>

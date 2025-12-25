@@ -3,7 +3,11 @@
   <div class="container">
     <div class="bar">
       <div class="brand">
-        <img src="icon.png" alt="icon" />
+        <picture>
+          <source type="image/webp" srcset="icon-64.webp 64w, icon-128.webp 128w" sizes="64px" />
+          <source type="image/png" srcset="icon-64.png 64w, icon-128.png 128w" sizes="64px" />
+          <img src="icon-64.png" alt="icon" width="64" height="71" decoding="async" />
+        </picture>
         <h2>João Paulo Dias</h2>
       </div>
       <div class="desktop-nav">
@@ -59,7 +63,12 @@
         }
       </button>
     </div>
-    <div class="mobile-nav" [class.open]="isMenuOpen()" [attr.aria-hidden]="!isMenuOpen()">
+    <div
+      class="mobile-nav"
+      [class.open]="isMenuOpen()"
+      [attr.aria-hidden]="!isMenuOpen()"
+      [attr.inert]="!isMenuOpen() ? '' : null"
+    >
       @for (item of navItems; track $index) {
         <button
           (click)="scrollToSection(item.id)"
@@ -67,6 +76,7 @@
           [class.active]="activeSection() === item.id"
           [attr.aria-current]="activeSection() === item.id ? 'page' : null"
           role="link"
+          [attr.tabindex]="isMenuOpen() ? 0 : -1"
         >
           {{ item.label }}
         </button>
@@ -76,6 +86,7 @@
         data-static="true"
         (click)="toggleTheme()"
         aria-label="Toggle theme"
+        [attr.tabindex]="isMenuOpen() ? 0 : -1"
       >
         Theme
       </button>

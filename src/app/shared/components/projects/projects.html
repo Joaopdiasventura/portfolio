@@ -11,13 +11,27 @@
       @for (project of projects; track $index) {
         <div class="card" appReveal="up" [revealDelay]="$index * 100">
           <div class="media">
-            <img
-              [src]="project.image"
-              (error)="onImgError($event)"
-              [alt]="project.title"
-              loading="lazy"
-              decoding="async"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                [attr.srcset]="project.imageWebpSrcSet"
+                [attr.sizes]="imageSizes"
+              />
+              <source
+                type="image/png"
+                [attr.srcset]="project.imagePngSrcSet"
+                [attr.sizes]="imageSizes"
+              />
+              <img
+                [src]="project.image"
+                (error)="onImgError($event)"
+                [alt]="project.title"
+                [attr.width]="imageWidth"
+                [attr.height]="imageHeight"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </div>
 
           <div class="card-header">

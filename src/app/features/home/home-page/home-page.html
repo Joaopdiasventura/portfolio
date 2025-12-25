@@ -1,8 +1,24 @@
 <app-navigation />
-<main>
+<main id="main" tabindex="-1">
   <app-hero />
-  <app-about />
-  <app-projects />
-  <app-contact />
+  @defer (on viewport) {
+    <app-about />
+  } @placeholder {
+    <section id="about" class="section-placeholder"></section>
+  }
+  @defer (on viewport) {
+    <app-projects />
+  } @placeholder {
+    <section id="projects" class="section-placeholder"></section>
+  }
+  @defer (on viewport) {
+    <app-contact />
+  } @placeholder {
+    <section id="contact" class="section-placeholder"></section>
+  }
 </main>
-<app-footer />
+@defer (on viewport) {
+  <app-footer />
+} @placeholder {
+  <footer class="section-placeholder"></footer>
+}
