@@ -26,29 +26,33 @@ body,
 
 .reveal {
   opacity: 0;
-  will-change: transform, opacity;
+  transform: translate3d(0, 20px, 0) scale(0.98);
+  filter: blur(6px);
+  will-change: transform, opacity, filter;
   transition:
-    opacity 600ms ease,
-    transform 600ms ease;
+    opacity 500ms ease,
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 700ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.from-up {
-  transform: translateY(16px);
+  transform: translate3d(0, 24px, 0) scale(0.98);
 }
 .reveal.from-down {
-  transform: translateY(-16px);
+  transform: translate3d(0, -24px, 0) scale(0.98);
 }
 .reveal.from-left {
-  transform: translateX(16px);
+  transform: translate3d(24px, 0, 0) scale(0.98);
 }
 .reveal.from-right {
-  transform: translateX(-16px);
+  transform: translate3d(-24px, 0, 0) scale(0.98);
 }
 .reveal.from-fade {
-  transform: none;
+  transform: translate3d(0, 8px, 0) scale(0.99);
 }
 .reveal.visible {
   opacity: 1;
-  transform: none;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -14,13 +14,13 @@ type Direction = 'up' | 'down' | 'left' | 'right' | 'fade';
 
 @Directive({
   selector: '[appReveal]',
-  standalone: true,
 })
 export class RevealOnScrollDirective implements OnInit, OnDestroy {
   @Input('appReveal') public direction: Direction = 'up';
   @Input() public revealDelay = 0;
 
   private observer?: IntersectionObserver;
+  private revealTimeout?: ReturnType<typeof setTimeout>;
   private readonly platformId = inject(PLATFORM_ID);
 
   private readonly host = inject(ElementRef<HTMLElement>);
@@ -34,22 +34,24 @@ export class RevealOnScrollDirective implements OnInit, OnDestroy {
     if (!isPlatformBrowser(this.platformId)) return;
 
     this.observer = new IntersectionObserver(
-      (entries) => {
+      (entries) =>
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const action = (): void => this.render.addClass(native, 'visible');
-            if (this.revealDelay > 0) setTimeout(action, this.revealDelay);
+            if (this.revealDelay > 0) this.revealTimeout = setTimeout(action, this.revealDelay);
             else action();
-            this.observer?.unobserve(native);
+          } else {
+            if (this.revealTimeout) clearTimeout(this.revealTimeout);
+            this.render.removeClass(native, 'visible');
           }
-        });
-      },
+        }),
       { threshold: 0.1, rootMargin: '0px 0px -10% 0px' },
     );
     this.observer.observe(native);
   }
 
   public ngOnDestroy(): void {
+    if (this.revealTimeout) clearTimeout(this.revealTimeout);
     this.observer?.disconnect();
   }
 }
