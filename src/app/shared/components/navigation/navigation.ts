@@ -9,6 +9,9 @@ import {
   ElementRef,
   AfterViewInit,
   effect,
+  Injector,
+  runInInjectionContext,
+  EffectRef,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ThemeService } from '../../services/theme.service';
@@ -32,7 +35,9 @@ export class Navigation implements OnInit, OnDestroy, AfterViewInit {
   private observer?: IntersectionObserver;
   private scrollLockUntil = 0;
   private ticking = false;
+  private navEffectRef?: EffectRef;
   private readonly platformId = inject(PLATFORM_ID);
+  private readonly injector = inject(Injector);
   private readonly theme = inject(ThemeService);
   private readonly host = inject(ElementRef<HTMLElement>);
 
@@ -49,10 +54,12 @@ export class Navigation implements OnInit, OnDestroy, AfterViewInit {
   public ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
     this.activeSection.set('home');
-    effect(() => {
-      this.activeSection();
-      this.updateUnderline();
-    });
+    this.navEffectRef = runInInjectionContext(this.injector, () =>
+      effect(() => {
+        this.activeSection();
+        this.updateUnderline();
+      }),
+    );
     setTimeout(() => {
       this.updateActiveByScroll();
       this.updateUnderline();
@@ -67,6 +74,7 @@ export class Navigation implements OnInit, OnDestroy, AfterViewInit {
 
   public ngOnDestroy(): void {
     if (isPlatformBrowser(this.platformId)) this.observer?.disconnect();
+    this.navEffectRef?.destroy();
   }
 
   public toggleMenu(): void {
@@ -103,9 +111,7 @@ export class Navigation implements OnInit, OnDestroy, AfterViewInit {
     if (!isPlatformBrowser(this.platformId)) return;
     const hostEl = this.host.nativeElement;
     const target = event.target as Node | null;
-    if (target && !hostEl.contains(target)) {
-      this.isMenuOpen.set(false);
-    }
+    if (target && !hostEl.contains(target)) this.isMenuOpen.set(false);
   }
 
   @HostListener('document:keydown.escape')
