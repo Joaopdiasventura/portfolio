@@ -17,4 +17,8 @@
     <section id="contact" class="section-placeholder"></section>
   }
 </main>
-<app-footer />
+@defer (on viewport) {
+  <app-footer />
+} @placeholder {
+  <footer class="section-placeholder"></footer>
+}
